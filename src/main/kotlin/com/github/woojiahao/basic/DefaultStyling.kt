@@ -1,5 +1,6 @@
-package com.github.woojiahao
+package com.github.woojiahao.basic
 
+import com.github.woojiahao.MarkdownDocument
 import com.github.woojiahao.style.Style
 
 /**

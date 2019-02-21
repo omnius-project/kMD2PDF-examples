@@ -1,4 +1,6 @@
-package com.github.woojiahao
+package com.github.woojiahao.basic
+
+import com.github.woojiahao.MarkdownDocument
 
 /**
  * This example shows how a user can specify the export location of the PDF.

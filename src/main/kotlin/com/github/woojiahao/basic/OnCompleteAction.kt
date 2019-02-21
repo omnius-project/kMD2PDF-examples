@@ -1,5 +1,6 @@
-package com.github.woojiahao
+package com.github.woojiahao.basic
 
+import com.github.woojiahao.MarkdownDocument
 import java.awt.Desktop
 import java.io.File
 
@@ -13,7 +14,6 @@ fun main() {
   markdownDocument.onComplete {
     println("Conversion success - opening document")
 
-    // Open the PDF document
     if (Desktop.isDesktopSupported()) {
       Desktop.getDesktop().open(it)
     } else {
