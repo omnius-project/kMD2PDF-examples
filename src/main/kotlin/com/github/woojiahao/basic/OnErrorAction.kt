@@ -1,22 +1,19 @@
 package com.github.woojiahao.basic
 
-import com.github.woojiahao.MarkdownDocument
+import com.github.kittinunf.result.failure
+import com.github.woojiahao.markdownConverter
 import java.io.FileNotFoundException
 
 /**
- * This example shows how the [MarkdownDocument.onError] method can be used to check whether the exported file location
- * is currently in use or already open.
- *
- * [MarkdownDocument.onError] passes the [Exception] raised so that users can perform checks on it.
+ * Using the [Result](https://github.com/kittinunf/Result) library, conversions will return the status of the operation
+ * and you can use the `failure` method where `it` has a reference to the exception thrown.
  */
 fun main() {
-  val markdownDocument = MarkdownDocument("resources/markdown-all-in-one.md")
-  markdownDocument.onError {
-    println("An error occurred")
-
-    if (it is FileNotFoundException) {
-      println("File is currently already open")
-    }
+  val converter = markdownConverter {
+    document(document)
   }
-  markdownDocument.toPDF()
+  val conversionStatus = converter.convert()
+  conversionStatus.failure {
+    if (it is FileNotFoundException) println("File is currently already open")
+  }
 }
