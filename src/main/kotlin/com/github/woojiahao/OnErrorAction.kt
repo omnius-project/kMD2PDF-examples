@@ -1,4 +1,4 @@
-package com.github.woojiahao.basic
+package com.github.woojiahao
 
 import com.github.kittinunf.result.failure
 import com.github.woojiahao.markdownConverter
