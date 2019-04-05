@@ -1,24 +1,19 @@
 package com.github.woojiahao.basic
 
-import com.github.woojiahao.MarkdownDocument
+import com.github.kittinunf.result.success
+import com.github.woojiahao.markdownConverter
 import java.awt.Desktop
-import java.io.File
 
 /**
- * This example shows how the [MarkdownDocument.onComplete] method can be used to launch the exported PDF on any OS.
- *
- * [MarkdownDocument.onComplete] passes the exported PDF [File] so that users can manipulate it as they see fit.
+ * Using the [Result](https://github.com/kittinunf/Result) library, conversions will return the status of the operation
+ * and you can use the `success` method where `it` has a reference to the output PDF file.
  */
 fun main() {
-  val markdownDocument = MarkdownDocument("resources/markdown-all-in-one.md")
-  markdownDocument.onComplete {
-    println("Conversion success - opening document")
-
-    if (Desktop.isDesktopSupported()) {
-      Desktop.getDesktop().open(it)
-    } else {
-      System.out.println("Awt Desktop is not supported!")
-    }
+  val converter = markdownConverter {
+    document(document)
   }
-  markdownDocument.toPDF()
+  val conversionResult = converter.convert()
+  conversionResult.success {
+    if (Desktop.isDesktopSupported()) Desktop.getDesktop().open(it)
+  }
 }
