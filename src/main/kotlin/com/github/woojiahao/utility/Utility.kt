@@ -1,4 +1,4 @@
-package com.github.woojiahao.basic
+package com.github.woojiahao.utility
 
 import com.github.woojiahao.MarkdownDocument
 

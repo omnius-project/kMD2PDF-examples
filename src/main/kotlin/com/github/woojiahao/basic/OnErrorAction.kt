@@ -2,6 +2,7 @@ package com.github.woojiahao.basic
 
 import com.github.kittinunf.result.failure
 import com.github.woojiahao.markdownConverter
+import com.github.woojiahao.utility.document
 import java.io.FileNotFoundException
 
 /**

@@ -2,6 +2,7 @@ package com.github.woojiahao.basic
 
 import com.github.kittinunf.result.success
 import com.github.woojiahao.markdownConverter
+import com.github.woojiahao.utility.document
 import java.awt.Desktop
 
 /**

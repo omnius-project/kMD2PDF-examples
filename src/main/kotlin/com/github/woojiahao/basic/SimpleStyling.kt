@@ -7,6 +7,7 @@ import com.github.woojiahao.style.settings
 import com.github.woojiahao.style.utility.FontFamily
 import com.github.woojiahao.style.utility.px
 import com.github.woojiahao.utility.c
+import com.github.woojiahao.utility.document
 
 /**
  * This example uses the CSS DSL to create a customized style for the exported PDF.
