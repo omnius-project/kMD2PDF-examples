@@ -1,6 +1,6 @@
 package com.github.woojiahao.basic
 
-import com.github.woojiahao.MarkdownDocument
+import com.github.woojiahao.markdownConverter
 
 /**
  * This example shows how a user can specify the export location of the PDF.
@@ -9,6 +9,9 @@ import com.github.woojiahao.MarkdownDocument
  * throw an error.
  */
 fun main() {
-  val markdownDocument = MarkdownDocument("resources/markdown-all-in-one.md")
-  markdownDocument.toPDF("${System.getProperty("user.home")}/Desktop/exported.pdf")
+  val converter = markdownConverter {
+    document(document)
+    targetLocation("${System.getProperty("user.home")}/Desktop/exported.pdf")
+  }
+  converter.convert()
 }
