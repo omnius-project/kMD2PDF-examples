@@ -1,9 +1,11 @@
 package com.github.woojiahao.basic
 
-import com.github.woojiahao.MarkdownDocument
-import com.github.woojiahao.style.FontFamily
-import com.github.woojiahao.style.Style
-import com.github.woojiahao.style.elements.lists.List
+import com.github.woojiahao.markdownConverter
+import com.github.woojiahao.style
+import com.github.woojiahao.style.elements.lists.List.ListStyleType.SQUARE
+import com.github.woojiahao.style.settings
+import com.github.woojiahao.style.utility.FontFamily
+import com.github.woojiahao.style.utility.px
 import com.github.woojiahao.utility.c
 
 /**
@@ -12,31 +14,28 @@ import com.github.woojiahao.utility.c
  * More on this DSL can be found [here.](https://woojiahao.github.io/kMD2PDF/#/customDSL)
  */
 fun main() {
-  val customStyle = createDSLStyle()
-  val markdownDocument = MarkdownDocument("resources/markdown-all-in-one.md", customStyle)
-  markdownDocument.toPDF()
-}
+  val converter = markdownConverter {
+    document(document)
 
-fun createDSLStyle() = Style
-    .createStyle(
-        16.0,
-        FontFamily("Roboto", "Lato")
-    ) {
+    settings {
+      fontSize = 16.0.px
+      font = FontFamily("Roboto", "Lato")
+      monospaceFont = FontFamily("Fira Code")
+    }
+
+    style {
       p {
         textColor = c("455A64")
       }
 
-      inlineCode {
-        fontFamily {
-          +"Fira Code"
-        }
-      }
-
       ul {
-        listStyleType = List.ListStyleType.SQUARE
+        listStyleType = SQUARE
       }
 
       selector("tr:nth-child(even)") {
         "background-color" to "#f2f2f2"
       }
     }
+  }
+  converter.convert()
+}
